@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Site de Suporte</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+
+        /* Estilos para os botões */
+        .button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para a área de descrição */
+        .descricao-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Estilos para a área de status */
+        #status {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h1>Descrição do Problema</h1>
+        <p>Aqui está a descrição do problema que você deseja resolver:</p>
+        <input type="text" class="descricao-input" id="descricao" placeholder="Digite a descrição aqui">
+
+        <!-- Botão "PARADO" -->
+        <button class="button" onclick="exibirStatus('❌', 'PARADO')">PARADO</button>
+
+        <!-- Botão "RESOLVIDO" -->
+        <button class="button" onclick="exibirStatus('✅', 'RESOLVIDO')">RESOLVIDO</button>
+
+        <!-- Área para exibir o status -->
+        <div id="status"></div>
+
+        <!-- Botão de copiar -->
+        <button class="button" onclick="copiarParaClipboard()">Copiar</button>
+    </div>
+
+    <!-- Script para exibir o status e copiar para o clipboard -->
+    <script>
+        function exibirStatus(emoji, status) {
+            const descricao = document.getElementById("descricao").value;
+            const statusElement = document.getElementById("status");
+            statusElement.innerHTML = `${emoji} ${descricao} ${status}`;
+        }
+
+        function copiarParaClipboard() {
+            const statusTexto = document.getElementById("status").innerText;
+            navigator.clipboard.writeText(statusTexto).then(() => {
+                alert("Texto copiado para a área de transferência!");
+            });
+        }
+    </script>
+</body>
+</html>
